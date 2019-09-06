@@ -13,8 +13,13 @@
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1"
+<<<<<<< HEAD
   },
   "dependencies": {
     "chalk": "^2.4.2"
   }
+=======
+  }
+
+>>>>>>> 37b521d48ddbc2d61067f97742f3c651b3b130db
 }

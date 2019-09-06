@@ -10,32 +10,34 @@ function createServer(port) {
 
   const server = http.createServer((request, response) => {
     // TODO: Write your homework code here
-    const url = request.url;
-    if (url === '/state') {
-      response.writeHead(200, { 'Content-Type': 'application/json' });
-      response.write(JSON.stringify({ state }));
-      response.end();
-    } else if (url === '/add') {
-      state++;
-      response.writeHead(200, { 'Content-Type': 'application/json' });
-      response.write(JSON.stringify({ state }));
-      response.end();
-    } else if (url === '/subtract') {
-      state--;
-      response.writeHead(200, { 'Content-Type': 'application/json' });
-      response.write(JSON.stringify({ state }));
-      response.end();
-    } else if (url === '/reset') {
-      state = 10;
-      response.writeHead(200, { 'Content-Type': 'application/json' });
-      response.write(JSON.stringify({ state }));
-      response.end();
-    } else {
-      response.writeHead(404, { 'Content-Type': 'application/json' });
-      response.write(JSON.stringify({ error: 'Not found' }));
-      response.end();
+        response.writeHead(200, { 'Content-Type': 'application/json' });
+
+    switch (request.url) {
+      case '/state':
+        response.write(JSON.stringify({ state }));
+        break;
+      case '/add':
+        state++;
+        response.write(JSON.stringify({ state }));
+        break;
+      case '/reset':
+        state = 10;
+        response.write(JSON.stringify({ state }));
+        break;
+      case '/subtract':
+        state--;
+        response.write(JSON.stringify({ state }));
+        break;
+      default:
+        response.writeHead(404, { 'Content-Type': 'application/json' });
+        response.write(JSON.stringify({ error: 'Not found' }));
+        break;
     }
+    response.end();
   });
+  
+  return server;
+};
 
   return server;
 }
